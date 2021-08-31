@@ -1,27 +1,18 @@
 package classic;
 
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
  * 要求： 求二叉树的最小深度
  * 最小深度是从根节点到最近叶子节点的最短路径上的节点数量
- * 1. 深度优先
- * 2. 广度优先
+ * 1. 深度优先 空间O(logN) 时间O(N)
+ * 2. 广度优先 空间O(N) 时间O(N)
  * @author huimin
  * @create 2021-08-02 19:32
  */
-class TreeNode{
-    int val;
-    TreeNode left;
-    TreeNode right;
 
-    public TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
 public class TreeDeep {
 
     public static void main(String[] args) {
@@ -32,7 +23,8 @@ public class TreeDeep {
         TreeNode node3 = new TreeNode(3, node6, null);
         TreeNode node2 = new TreeNode(2, node4, node5);
         TreeNode node1 = new TreeNode(1, node2, node3);
-        System.out.println();
+        System.out.println(minDepth_depthFirst((node1)));
+        System.out.println(minDepth_widthFirst((node1)));
     }
 
     // 深度优先
@@ -59,7 +51,23 @@ public class TreeDeep {
     public static int minDepth_widthFirst(TreeNode root){
         if(root == null)
             return 0;
-
+        Queue<TreeNode> queue = new LinkedList<>();
+        root.deep = 1;
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            if(node.left == null && node.right == null){
+                return node.deep;
+            }
+            if(node.left != null){
+                node.left.deep = node.deep + 1;
+                queue.offer(node.left);
+            }
+            if(node.right != null){
+                node.right.deep = node.deep + 1;
+                queue.offer(node.right);
+            }
+        }
 
         return 0;
     }

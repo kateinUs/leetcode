@@ -124,6 +124,8 @@ class T25 {
         System.out.println(res);
 
         int i = 0;
+        boolean flag = true;
+        System.out.println(Integer.MIN_VALUE);
 
     }
 }
