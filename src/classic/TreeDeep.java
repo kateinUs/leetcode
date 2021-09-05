@@ -48,6 +48,9 @@ public class TreeDeep {
         return depth+1;
     }
 
+    // 广度优先
+    // 需要新建一个queue
+    // 并且要求TreeNode 有deep属性
     public static int minDepth_widthFirst(TreeNode root){
         if(root == null)
             return 0;
