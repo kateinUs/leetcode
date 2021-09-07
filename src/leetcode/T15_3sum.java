@@ -7,27 +7,32 @@ import java.util.*;
  * @author huimin
  * @create 2021-05-18 0:32
  */
-public class T15 {
+public class T15_3sum {
     public List<List<Integer>> threeSum(int[] nums) {
-        int len = nums.length;
-        // method 1: 5 choose 3
-        // loop n(n-1)(n-2)
-        ArrayList<List<Integer>> conb = new ArrayList<>();
-        for(int i=0; i<len; i++){
-            for(int j=i+1; j<len; j++){
-                for(int k=j+1; k<len; k++){
-                    if((nums[i] + nums[j] + nums[k]) == 0){
-                        List<Integer> temp = new ArrayList<>();
-                        temp.add(nums[i]);
-                        temp.add(nums[j]);
-                        temp.add(nums[k]);
-                        conb.add(temp);
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length && nums[i]<=0; i++){
+            //这里if判断的作用是确保这次循环数i的值和上一次循环数的值是不同的，避免重复计算
+            if(i == 0 || nums[i-1] != nums[i]){
+                int low = i+1, high = nums.length-1;
+                while(low < high){
+                    int sum = nums[i] + nums[low] + nums[high];
+                    if(sum == 0){
+
+                        //将结果添加入list中，并将low减一，high加一，检查下一组数
+                        res.add(Arrays.asList(nums[i], nums[low++], nums[high--]));
+                        //这个while是确保不重复count一样的triple（三元组）
+                        while(low<high && nums[low] == nums[low-1])
+                            low++;
                     }
+                    else if(sum < 0)
+                        low++;
+                    else
+                        high--;
                 }
             }
         }
-
-        return null;
+        return res;
     }
 
     public static void main(String[] args) {
