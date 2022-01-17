@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class T819_most_common_word {
     public String mostCommonWord(String paragraph, String[] banned) {
-        // 1. replace the puctuation with spaces and put all letters in lowercase
+        // 1. replace the punctuation with spaces and put all letters in lowercase
         String normalizedStr = paragraph.replaceAll("[^a-zA-Z0-9 ]", " ").toLowerCase();
         // 2. split the string into words
         String[] words = normalizedStr.split("\\s+"); // TODO: 研究一下正则
