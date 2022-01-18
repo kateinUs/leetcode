@@ -1,6 +1,5 @@
 package java_masterclass.graph_exer;
 
-import javax.swing.undo.CannotUndoException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +12,7 @@ import java.util.Queue;
  * @create 2022-01-11 22:36
  */
 
-public class Graph {
+public class Graph_Route_btw_nodes {
 
 
     static ArrayList<GraphNode> nodeList = new ArrayList<GraphNode>();
@@ -22,7 +21,7 @@ public class Graph {
         Unvisited, Visited, Visiting;
     }
 
-    public Graph(ArrayList<GraphNode> nodeList) {
+    public Graph_Route_btw_nodes(ArrayList<GraphNode> nodeList) {
         this.nodeList = nodeList;
     }
 
@@ -66,19 +65,19 @@ public class Graph {
         nodeList.add(new GraphNode("H",7));
         nodeList.add(new GraphNode("I",8));
         nodeList.add(new GraphNode("J",9));
-        Graph newGraph = new Graph(nodeList);
-        newGraph.addDirectedEdge(0,1);
-        newGraph.addDirectedEdge(0,2);
-        newGraph.addDirectedEdge(0,3);
-        newGraph.addDirectedEdge(1,9);
-        newGraph.addDirectedEdge(2,6);
-        newGraph.addDirectedEdge(4,0);
-        newGraph.addDirectedEdge(4,5);
-        newGraph.addDirectedEdge(5,8);
-        newGraph.addDirectedEdge(6,7);
-        newGraph.addDirectedEdge(6,3);
-        boolean res = newGraph.search(nodeList.get(0), nodeList.get(4));
-        boolean res2 = newGraph.search(nodeList.get(4), nodeList.get(0));
+        Graph_Route_btw_nodes newGraphRoutebtwnodes = new Graph_Route_btw_nodes(nodeList);
+        newGraphRoutebtwnodes.addDirectedEdge(0,1);
+        newGraphRoutebtwnodes.addDirectedEdge(0,2);
+        newGraphRoutebtwnodes.addDirectedEdge(0,3);
+        newGraphRoutebtwnodes.addDirectedEdge(1,9);
+        newGraphRoutebtwnodes.addDirectedEdge(2,6);
+        newGraphRoutebtwnodes.addDirectedEdge(4,0);
+        newGraphRoutebtwnodes.addDirectedEdge(4,5);
+        newGraphRoutebtwnodes.addDirectedEdge(5,8);
+        newGraphRoutebtwnodes.addDirectedEdge(6,7);
+        newGraphRoutebtwnodes.addDirectedEdge(6,3);
+        boolean res = newGraphRoutebtwnodes.search(nodeList.get(0), nodeList.get(4));
+        boolean res2 = newGraphRoutebtwnodes.search(nodeList.get(4), nodeList.get(0));
         System.out.println(res);
         System.out.println(res2);
     }

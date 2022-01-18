@@ -1,4 +1,4 @@
-package java_masterclass.dicide_and_conquer;
+package java_masterclass.divide_and_conquer;
 
 /**
  * @author huimin
