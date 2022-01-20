@@ -6,7 +6,6 @@ package java_masterclass.dynamic_programming;
  * 2. divide and conquer method 使用递归来做
  *
  *
- *
  * @author huimin
  * @create 2022-01-18 1:27
  */
@@ -30,6 +29,14 @@ public class Knapsack_01 {
         return dp[m];
     }
 
+    /**
+     * divide and conquer method 使用递归来做
+     * @param W
+     * @param C
+     * @param m
+     * @param i
+     * @return
+     */
     public static int knapsack2(int[] W, int[] C, int m, int i){
         if(m<0 || i<0 || i>=C.length)
             return 0;
@@ -41,8 +48,6 @@ public class Knapsack_01 {
             profit1 = C[i] + knapsack2(W, C, m-W[i], i+1);
             // 2. 不拿
             profit2 = knapsack2(W, C, m, i+1);
-
-
         }
 
         return Math.max(profit1, profit2);
@@ -64,20 +69,3 @@ public class Knapsack_01 {
         System.out.println("Result shows that DP method runs faster than recursive method");
     }
 }
-
-/**
- *  modified:   ../classic/Fibonacci.java
- *         modified:   ../java_masterclass/divide_and_conquer/Min_cost_to_reach_last_cell.java
- *         modified:   ../java_masterclass/divide_and_conquer/NumberFactor.java
- *         modified:   ../java_masterclass/dynamic_programming/Knapsack_01.java
- *         modified:   ../java_masterclass/graph_exer/GraphNode.java
- *         modified:   ../java_masterclass/graph_exer/Graph_Route_btw_nodes.java
- *         modified:   ../leetcode/T692_topK_frequent_words.java
- *         modified:   ../leetcode/T938_range_sum_of_BST.java
- *         modified:   ../oa/BinaryPalindrome.java
- *         modified:   ../oa/Huawei_vo1.java
- *         modified:   ../oa/Quora_Q1.java
- *         modified:   ../oa/TikTok_OA.java
- */
-// git add ../java_masterclass/graph_exer/GraphNode.java ../java_masterclass/graph_exer/Graph_Route_btw_nodes.java  ../leetcode/T692_topK_frequent_words.java ../leetcode/T938_range_sum_of_BST.java
-// git add ../classic/Fibonacci.java ../java_masterclass/divide_and_conquer/Min_cost_to_reach_last_cell.java ../java_masterclass/divide_and_conquer/NumberFactor.java ../java_masterclass/dynamic_programming/Knapsack_01.java
