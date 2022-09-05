@@ -11,15 +11,6 @@ package leetcode;
  * @create 2021-07-17 17:08
  */
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-}
 
 public class T617_merge_two_binary_tree {
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {

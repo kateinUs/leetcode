@@ -19,6 +19,7 @@ public class T33_search_in_roteted_sorted_array {
             return nums[0] == target? 0: -1;
         // 1. search the rotation index
         int rotation_index = find_ratate_index(0, nums.length - 1);
+        // if the rotation index is 0, means this case has no rotation
         if(rotation_index == 0)
             return binary_search(0, len-1);
         if(target >= nums[0] && target <= nums[rotation_index-1])

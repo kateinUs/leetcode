@@ -2,9 +2,11 @@ package meta;
 
 import javax.sound.midi.Soundbank;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
+ * Use 2 heap
  * @author huimin
  * @create 2021-11-30 0:33
  */
@@ -13,8 +15,8 @@ public class Find_Median {
     PriorityQueue<Integer> small;
     /** initialize your data structure here. */
     public Find_Median() {
-        large = new PriorityQueue<>((a, b)->(b-a));
-        small = new PriorityQueue<>((a,b)->(a-b));
+        large = new PriorityQueue<>((a, b)->(b-a)); // 最大堆
+        small = new PriorityQueue<>(); // 最小堆
     }
     //添加数据
     public void addNum(int num) {
@@ -35,17 +37,6 @@ public class Find_Median {
             return large.peek();
         }
         return (small.peek()+large.peek())/2.0;
-    }
-
-    int findMedian_meta(int[] arr) {
-        int[] res = new int[arr.length];
-        // Write your code here
-        for(int i=0; i<arr.length; i++){
-            addNum(arr[i]);
-            res[i] = (int) findMedian();
-        }
-
-        return 0;
     }
 
     public static void main(String[] args) {

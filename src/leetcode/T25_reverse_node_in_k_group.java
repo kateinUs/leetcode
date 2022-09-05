@@ -20,19 +20,6 @@ import java.util.Stack;
  * }
  */
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {
-    }
-    ListNode(int val) {
-        this.val = val;
-    }
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
 
 class T25 {
 
@@ -91,11 +78,6 @@ class T25 {
     public static ListNode reverseKGroup_recursion(ListNode head, int k){
         ListNode curr = head, temp = head, next = null, prev = null;
         int count = 0;
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.getOrDefault(0, 0);
-        for(Map.Entry entry: map.entrySet()){
-            entry.getKey();
-        }
 
         // temp检查剩余的node中有没有足够的数量k，不够的话不需要做反转处理，直接返回head
         while (temp != null && count != k) {
@@ -130,10 +112,6 @@ class T25 {
         int k = 2;
         ListNode res = reverseKGroup_traversal(node1, k);
         System.out.println(res);
-
-        int i = 0;
-        boolean flag = true;
-        System.out.println(Integer.MIN_VALUE);
 
     }
 }

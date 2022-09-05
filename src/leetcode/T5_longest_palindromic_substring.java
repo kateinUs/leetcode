@@ -18,20 +18,20 @@ public class T5_longest_palindromic_substring {
             dp[i][i] = true;
         }
 
-        for(int startIdx = n - 1; startIdx >= 0; startIdx--) {
-            for(int endIdx = startIdx + 1; endIdx < n; endIdx++) {
+        for(int i = n - 1; i >= 0; i--) {
+            for(int j = i + 1; j < n; j++) {
 
-                if(s.charAt(startIdx) == s.charAt(endIdx)) {
+                if(s.charAt(i) == s.charAt(j)) {
                     // if it's a two character string or if the remaining string is a palindrome too
-                    if(endIdx - startIdx == 1 || dp[startIdx + 1][endIdx - 1]) {
-                        dp[startIdx][endIdx] = true;
+                    if(j - i == 1 || dp[i + 1][j - 1]) {
+                        dp[i][j] = true;
 
                         // 判断此结果是否为max，如果是把start和end替换成新的
-                        int len = endIdx - startIdx + 1;
+                        int len = j - i + 1;
                         if(len >= max) {
                             max = Math.max(max, len);
-                            start = startIdx;
-                            end = endIdx;
+                            start = i;
+                            end = j;
                         }
                     }
                 }

@@ -32,4 +32,36 @@
    
    Obviously, using Pair is time-efficient and space-saving, and also more straight-forward.
    
-   
+   `Leetcode T314` uses Pair
+
+### Sort HashMap based on Key and Value
+
+##### By Key
+
+```
+Set set = map.keySet();
+Integer[] arr = (Integer[]) set.toArray(new Integer[0]);
+Arrays.sort(arr);
+// Another way to create sorted key
+// List<Integer> sortedKeys = new ArrayList<Integer>(columnTable.keySet());
+// Collections.sort(sortedKeys);
+for(Integer i: arr){
+	res.add(map.get(i));
+}
+```
+
+##### By Value
+
+```
+// Use the stream feture of Java8 to convert map to a list of map entry
+List<Map.Entry<Integer, String>> list = mp.entrySet()
+	.stream()
+	.collect(Collectors.toList());
+list.sort(new Comparator<Map.Entry<Integer, String>>() {
+	@Override
+	public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+		return o2.getValue().compareTo(o1.getValue());
+	}
+});
+```
+

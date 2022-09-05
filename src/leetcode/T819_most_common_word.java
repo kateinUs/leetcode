@@ -26,15 +26,6 @@ public class T819_most_common_word {
         }
         // 4. return the word with the highest frequency
         return Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
-        // int largest = 0;
-        // String ret = null;
-        // for (Map.Entry<String, Integer> entry: map.entrySet()) {
-        //     if(entry.getValue() > largest){
-        //         largest = entry.getValue();
-        //         ret = entry.getKey();
-        //     }
-        // }
-        // return ret;
     }
 
 }

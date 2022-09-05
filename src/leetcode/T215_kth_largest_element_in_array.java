@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  */
 public class T215_kth_largest_element_in_array {
     // Method 1: sort
-    // Time complexity: O(N)
+    // Time complexity: O(NlogN)
     public int findKthLargest1(int[] nums, int k) {
         Arrays.sort(nums);
         return nums[nums.length - k];

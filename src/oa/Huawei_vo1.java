@@ -1,4 +1,4 @@
-package classic;
+package oa;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ import static java.util.Comparator.naturalOrder;
  * @author huimin
  * @create 2022-01-06 21:01
  */
-public class Huawei {
+public class Huawei_vo1 {
 
     public static int findChouShu(int n, int a, int b, int c){
         int i=1;
@@ -67,6 +67,8 @@ public class Huawei {
         int res3 = findChouShu2(4, 2, 3,4);
         System.out.println(res2);
         System.out.println(res3);
+        String s = "qe";
+        s.startsWith("1");
     }
 
 }

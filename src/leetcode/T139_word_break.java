@@ -20,6 +20,7 @@ public class T139_word_break {
         // 第一位初始化是true，因为substring(0,0)，是null，一定包含在set中
         dp[0] = true;
         // i是从1循环到s.length()
+        // i是快指针，j是满指针
         for(int i=1; i<=s.length(); i++){
             for(int j=0; j<i; j++){
                 if(dp[j] && wordDictSet.contains(s.substring(j, i))){

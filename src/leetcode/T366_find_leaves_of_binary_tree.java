@@ -17,8 +17,12 @@ public class T366_find_leaves_of_binary_tree {
         for(int i=0; i<map.size(); i++){
             res.add(map.get(i));
         }
+        Map<Integer, Integer> map = new HashMap<>();
+//        map.remove()
         return res;
     }
+
+    // return level of node
     int dfs(TreeNode node){
         if(node.left == null && node.right == null){
             List<Integer> levelList = map.getOrDefault(0, new ArrayList<Integer>());
