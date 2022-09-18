@@ -31,15 +31,38 @@ public class T394_decode_string {
                         stack.add(sb.charAt(k));
                     }
                 }
-
             }
         }
         StringBuilder res = new StringBuilder();
         while(!stack.isEmpty()){
             res.append(stack.pop());
         }
-
         return res.reverse().toString();
+    }
+
+    // recursion
+    int index = 0;
+    public String decodeStringR(String s){
+        StringBuilder result = new StringBuilder();
+        while (index < s.length() && s.charAt(index) != ']') {
+            if (!Character.isDigit(s.charAt(index)))
+                result.append(s.charAt(index++));
+            else {
+                int k = 0;
+                // build k while next character is a digit
+                while (index < s.length() && Character.isDigit(s.charAt(index)))
+                    k = k * 10 + s.charAt(index++) - '0';
+                // ignore the opening bracket '['
+                index++;
+                String decodedString = decodeStringR(s);
+                // ignore the closing bracket ']'
+                index++;
+                // build k[decodedString] and append to the result
+                while (k-- > 0)
+                    result.append(decodedString);
+            }
+        }
+        return new String(result);
     }
 
     public static void main(String[] args) {

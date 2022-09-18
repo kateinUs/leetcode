@@ -11,29 +11,41 @@ import java.util.*;
 
 public class Optiver {
 
-    HashMap<Character, List<Character>> adjList = new HashMap<>();
-    HashMap<Character, Integer> numParents = new HashMap<>(); // map of all nodes to number of parents, used for check E4/5
-    Character root;
-    Set<Character> visited;
-    static boolean isUpperCaseLetter(char ch){
-        return (ch >= 'A' && ch <= 'Z');
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+//        String input = "(A,B) (A,C) (B,D) (D,C) \n 213";
+//        System.out.println(input);
+        passInput(input);
+    }
+    static boolean isUpperCseLetter(char ch){
+        return (ch >='A' && ch <='Z');
     }
     static boolean isValidChar(char ch){
-        return (ch >= 'A' && ch <= 'Z') || ch == '(' || ch == ')' || ch == ',' || ch == ' ';
+        return (ch >='A' && ch <='Z') || ch =='(' || ch ==')' ||ch ==' ' || ch== ',';
     }
-    void method(String input){
-        Character parent = null;
-        int index = 0;
 
+    static void passInput(String input){
+        HashMap<Character, List<Character>> adjList = new HashMap<>();
+        HashMap<Character, Integer> numParents = new HashMap<>();
+
+        boolean E2Error = false;
+        boolean E3Error = false;
+
+        Character parent = null;
+        Character root = null;
+
+        int index =0; // used to denote parent or child
         for(int i=0; i<input.length(); i++){
             char cur = input.charAt(i);
             if(!isValidChar(cur)){
                 System.out.println("E1");
                 return;
             }
-            // leading or tailing 0 or 2 consecutive 0
+            // check for leading or trailing space
             if(cur == ' '){
-                if(i== 0 || i == input.length()-1){
+                if(i ==0 || i == input.length()-1){
                     System.out.println("E1");
                     return;
                 }else if(input.charAt(i-1) != ')' || input.charAt(i+1) != '('){
@@ -41,113 +53,119 @@ public class Optiver {
                     return;
                 }
             }
-//            if((i == 0 && cur == ' ') || (i == input.length()-1 && cur == ' ') || (i >= 1&& cur == ' ' && input.charAt(i-1) == ' ')){
-//                System.out.println("E1");
-//                return;
-//            }
-            if(cur == ',' ){
-                if(i== 0 || i == input.length()-1){
+            if(cur == ','){
+                if(i ==0 || i == input.length()-1){
                     System.out.println("E1");
                     return;
-                }else if(!isUpperCaseLetter(input.charAt(i-1)) || !isUpperCaseLetter(input.charAt(i+1))){
+                } else if(!isUpperCseLetter(input.charAt(i-1)) || !isUpperCseLetter(input.charAt(i+1))){
                     System.out.println("E1");
                     return;
                 }
             }
-            if(cur >= 'A' && cur <= 'Z'){
-                index++;
-                if(index % 2 ==1){ // input[i] is a parent node
-                    if(i-1 >= 0 && input.charAt(i-1) != '('){
+            if(isUpperCseLetter(cur)){
+                index ++;
+                if(index % 2 ==1){ // the current char is a parent node
+                    if(i>=1 && input.charAt(i-1) != '('){
                         System.out.println("E1");
                         return;
-                    } else if(i+1 <input.length() && input.charAt(i+1) != ','){
-                        System.out.println("E1");
-                        return;
-                    }
-                    // store parent for use in next iteration
-                    parent = cur;
-                } else{
-                    if(i -1>=0 && input.charAt(i-1) != ','){
-                        System.out.println("E1");
-                        return;
-                    } else if(i+1 < input.length() && input.charAt(i+1) != ')'){
+                    } else if(i+1<input.length() && input.charAt(i+1) != ','){
                         System.out.println("E1");
                         return;
                     }
 
-                    // check duplicate (E2)
+                    parent = cur; // store parent for use in next iteration
+                } else {
+                    if(i>=1 && input.charAt(i-1) !=','){
+                        System.out.println("E1");
+                        return;
+                    }else if(i+1<input.length() && input.charAt(i+1) !=')'){
+                        System.out.println("E1");
+                        return;
+                    }
+                    // check for duplicate (E2)
                     for(int j=0; j<adjList.getOrDefault(parent, new ArrayList<>()).size(); j++){
-                        if(adjList.get(parent).get(j) == cur){
-                            System.out.println("E2");
-                            return;
+                        if(adjList.get(parent).get(j) == cur){ // has duplicate
+                            E2Error = true;
                         }
                     }
 
                     // check for parent has more than 2 children (E3)
-                    if(adjList.getOrDefault(parent, new ArrayList<>()).size() == 2){ // the parent already had 2 children
-                        System.out.println("E3");
-                        return;
+                    if(adjList.getOrDefault(parent, new ArrayList<>()).size() >= 2){ // the parent already has 2 children
+                        E3Error = true;
                     }
 
-                    // update the parent number in map
+                    // update the number of parent in numParent map
                     numParents.put(cur, numParents.getOrDefault(cur, 0)+1);
                     if(!numParents.containsKey(parent)) numParents.put(parent, 0);
 
-                    // else no violation, store the node to parent's adjList
-                    ArrayList<Character> list = (ArrayList<Character>) adjList.getOrDefault(parent, new ArrayList<Character>());
+                    // else no violation, store the current child node to parent's list
+                    ArrayList<Character> list = (ArrayList<Character>)adjList.getOrDefault(parent, new ArrayList<Character>());
                     list.add(cur);
                     adjList.put(parent, list);
-                    index = 0;
-
+                    index = 0; // reset index
                 }
             }
         }
 
-        // multiple root check (E4)
+        if(E2Error){
+            System.out.println("E2");
+            return;
+        }
+        if(E3Error){
+            System.out.println("E3");
+            return;
+        }
+        // check for multiple roots (E4)
         int numRoots = 0;
         for(Map.Entry<Character, Integer> entry: numParents.entrySet()){
-            if(entry.getValue() == 0){
+            System.out.println(entry.getKey() + " " + entry.getValue());
+            if(entry.getValue() == 0){ // means it the root
                 root = entry.getKey();
                 numRoots++;
-                if(numRoots == 2){
+                if(numRoots==2){
                     System.out.println("E4");
                     return;
                 }
             }
         }
 
-        // check tree cycle (E5) by DFS
-//        boolean E5Error = false;
-        visited = new HashSet<>();
-//        for(Character node: adjList.keySet()){
-//            visited = new HashSet<>();
-//            E5Error = DFS(node);
-//            if(E5Error) break;
-//        }
-        if(root != null && DFS(root, '0')){
+        // check for cycle (E5) by DFS
+        Set<Character> visited = new HashSet<>();
+        System.out.println(root);
+        if(root != null && DFS(root, '0', visited, adjList)){
             System.out.println("E5");
+            return;
         }
+         printExpression(adjList, root);
+
     }
 
-    boolean DFS(Character node, Character parent){
+    static boolean DFS(Character node, Character parent, Set<Character> visited, HashMap<Character, List<Character>> adjList){
         visited.add(node);
-
-        for(Character neib: adjList.getOrDefault(node, new ArrayList<>())){
-            if(!visited.contains(neib)) {
-                if (DFS(neib, node)) return true;
-            }else if(neib != parent)
+        for(Character neib: adjList.getOrDefault(node, new ArrayList<Character>())){
+            if(!visited.contains(neib)){
+                if(DFS(neib, node, visited, adjList)) return true;
+            }else if(neib != parent){
                 return true;
+            }
         }
         return false;
     }
 
-    public static void main(String[] args) {
-        String input = "(A,B) (A,C) (B,D) (D,C)";
-        String input2 = "(B,D) (D,E) (A,B) (C,F) (E,G) (A,C)";
-        Optiver test = new Optiver();
-        Optiver test2 = new Optiver();
-        test.method(input);
-        test2.method(input2);
-
+    static void printExpression(HashMap<Character, List<Character>> adjList, char cur){
+        System.out.print("(" + cur);
+        int numChild = adjList.getOrDefault(cur, new ArrayList<>()).size();
+        if(numChild == 1){
+            printExpression(adjList, adjList.get(cur).get(0));
+        } else if(numChild == 2){
+            if(adjList.get(cur).get(0) < adjList.get(cur).get(1)){
+                printExpression(adjList, adjList.get(cur).get(0));
+                printExpression(adjList, adjList.get(cur).get(1));
+            }else{
+                printExpression(adjList, adjList.get(cur).get(1));
+                printExpression(adjList, adjList.get(cur).get(0));
+            }
+        }
     }
+
 }
