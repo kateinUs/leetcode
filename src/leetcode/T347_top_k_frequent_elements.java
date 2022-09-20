@@ -55,6 +55,7 @@ public class T347_top_k_frequent_elements {
         // O(N log k) < O(N log N) time
         for (int n: count.keySet()) {
             heap.add(n);
+            // 因为是最小堆，当堆里元素的数量大于k是，poll出去的就是最小值，那么堆里剩下的就是当前最大的k个
             if (heap.size() > k) heap.poll();
         }
 
