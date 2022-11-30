@@ -49,9 +49,7 @@ public class CountPrimeNumber {
                 }
             }
         }
-        Map<Integer, String> map = new HashMap<>();
-        map.keySet();
-        map.entrySet();
+
         int numberOfPrimes = 0;
         for (int i = 2; i < n; i++) {
             if (isComposite[i] == false) {

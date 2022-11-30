@@ -1,8 +1,6 @@
 package leetcode;
 
-import java.nio.charset.CharacterCodingException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 /**

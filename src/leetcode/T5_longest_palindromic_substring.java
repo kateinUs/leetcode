@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.*;
+
 /**
  * @author huimin
  * @create 2021-09-18 12:59
@@ -39,5 +41,37 @@ public class T5_longest_palindromic_substring {
         }
 
         return s.substring(start, end + 1);
+    }
+
+    // method2: brute force
+    public String longestPalindrome2(String s) {
+        // write your code here
+        int n = s.length();
+        for(int len = n; len>0; len--){
+            for(int start = 0; start+len <= n; start++){
+                // end 传入的 star+len-1 要减一 因为这个函数是end inclusive
+                if(isPalindrome(s, start, start+len-1)){
+                    return s.substring(start, start+len);
+                }
+            }
+        }
+        return "";
+    }
+    // end inclusive
+    private boolean isPalindrome(String s, int start, int end){
+        while(start< end && s.charAt(start) == s.charAt(end)){
+            start++;
+            end--;
+        }
+        return start >= end;
+    }
+
+    public static void main(String[] args) {
+        int[][] arr = {{1, 0}, {0,1}};
+        List<int[]> list= new ArrayList<int[]>(Arrays.asList(arr));
+        List<Integer> q = new LinkedList<>();
+//        q.add();
+
+
     }
 }

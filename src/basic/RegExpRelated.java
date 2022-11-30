@@ -13,7 +13,6 @@ public class RegExpRelated {
         String res = str1.replaceAll("[^a-zA-Z0-9]", " ");
         System.out.println(res);
         System.out.println(res.toLowerCase());
-
         String str2 = "Hello     world  I like    Java  ";
         // 按照空格分隔，空格数量可以大于等于1
         String[] splits = str2.split("\\s+"); // \\s代表空格； +代表大于等于一个

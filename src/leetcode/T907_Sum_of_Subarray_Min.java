@@ -8,7 +8,7 @@ import java.util.Stack;
  * @create 2022-08-13 22:27
  */
 public class T907_Sum_of_Subarray_Min {
-    // Method 1: monotonic stack, using 2 array to store next smaller element
+    // Method 1: 单调栈 monotonic stack, using 2 array to store next smaller element
     // and previous small or equal element
     // BUT EASY TO UNDERSTAND
     public int sumSubarrayMins(int[] arr) {

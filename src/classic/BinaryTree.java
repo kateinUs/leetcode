@@ -2,8 +2,7 @@ package classic;
 
 import jdk.nashorn.api.tree.Tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author huimin
