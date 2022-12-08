@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
@@ -56,6 +57,8 @@ public class T295_Find_median_from_data_stream {
         max.add(3);
         System.out.println(max.poll()); // 10
         System.out.println(max.poll()); // 3
+        LinkedList<Integer> res = new LinkedList<>();
+        res.toArray();
 
 
     }

@@ -18,12 +18,6 @@ public class T55_Jump_Game {
                 return false;
             }
         }
-        Map<Integer, Integer> map = new HashMap<>();
-        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
-        for(Map.Entry entry: entries){
-            entry.getKey();
-        }
-        System.out.println();
         return true;
     }
 

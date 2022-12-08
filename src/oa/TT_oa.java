@@ -24,6 +24,7 @@ class UnionFind {
     private Integer find(Integer node) {
         Integer captain = fatherMap.get(node);
         // 如果自己的船长不是自己 bubble up
+        // 路劲压缩
         if (captain != node) {
             fatherMap.put(node, find(captain));
         }

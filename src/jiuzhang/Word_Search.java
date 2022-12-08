@@ -1,6 +1,6 @@
 package jiuzhang;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * LintCode 123: word search 1 (T/F)
@@ -19,6 +19,17 @@ import java.util.List;
  * @author huimin
  * @create 2022-11-29 0:28
  */
+class TrieNode{
+    Map<Character, TrieNode> sons;
+    boolean isWord;
+    String word;
+
+    TrieNode(){
+        sons = new HashMap<>();
+        isWord = false;
+        word = null;
+    }
+}
 public class Word_Search {
     int[][] dirs = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
@@ -78,10 +89,65 @@ public class Word_Search {
     // 所以需要用额外的数据结构来优化时间
     // 这里我们可以用Trie 字典树结构
     // 使用字典树后的字母查询时间为O(1)
+    TrieNode root;
     public List<String> wordSearchII(char[][] board, List<String> words) {
         // write your code here
+        if(board.length == 0 || words.size() == 0) return new ArrayList<>();
+        Set<String> res = new HashSet<>();
+        // construct trie tree
+        root = new TrieNode();
+        TrieNode cur;
+        for(String s: words){
+            cur = root;
+            for(char c: s.toCharArray()){
+                if(!cur.sons.containsKey(c)){
+                    cur.sons.put(c, new TrieNode());
+                }
+                cur = cur.sons.get(c);
+            }
+            cur.isWord = true;
+            cur.word = s;
+        }
 
+        int ROWS = board.length;
+        int COLS = board[0].length;
+        boolean[][] visited;
 
-        return null;
+        for(int i=0; i<ROWS; i++){
+            for(int j=0; j<COLS; j++){
+                cur = root;
+                char curChar = board[i][j];
+                if(cur.sons.containsKey(curChar)){
+                    visited = new boolean[ROWS][COLS];
+                    dfs(board, i, j, cur.sons.get(curChar), visited, res);
+                }
+            }
+        }
+        return new ArrayList<>(res);
+    }
+
+//    int[][] dirs = {{-1,0}, {0, 1}, {1, 0}, {0, -1}};
+    void dfs(char[][] board, int i, int j, TrieNode node, boolean[][] visited, Set<String> res){
+        if(node.isWord){
+            res.add(node.word);
+            node.word = null;
+            node.isWord = false;
+        }
+        if(node.sons.size() == 0) return;
+        visited[i][j] = true;
+        for(int[] dir: dirs){
+            int ni = i +dir[0];
+            int nj = j + dir[1];
+            if(ni < 0 || ni >= board.length || nj < 0 || nj >= board[0].length || visited[ni][nj]){
+                continue;
+            }
+            char c = board[ni][nj];
+            if(node.sons.containsKey(c)){
+                dfs(board, ni, nj, node.sons.get(c), visited, res);
+            }
+        }
+
+        // don't forget to backtrack
+        visited[i][j] = false;
     }
 }

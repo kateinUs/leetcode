@@ -21,7 +21,7 @@ import java.util.Stack;
  */
 
 
-class T25 {
+class T25_reverse_node_in_k_group {
 
     /**
      * Method 1: traversal
@@ -84,9 +84,9 @@ class T25 {
             temp = temp.next;
             count++;
         }
-
         if (count != k) return head;
 
+        // 开始反转接下里的K个ndoe
         while (curr != null && count > 0) {
             next = curr.next;
             curr.next = prev;
@@ -95,10 +95,12 @@ class T25 {
             count--;
         }
 
+        // 如果后面还有就
         if (next != null) {
             head.next = reverseKGroup_recursion(next, k);
         }
 
+        // 返回当前的head
         return prev;
     }
 

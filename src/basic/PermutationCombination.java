@@ -1,8 +1,5 @@
 package basic;
 
-import leetcode.T46_permutations;
-
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +8,9 @@ import java.util.List;
  * @author huimin
  * @create 2022-11-26 21:11
  */
-public class DFSRelated {
+public class PermutationCombination {
     // 组合：combination
-    // subset 1： 数字不重复
+    // Subset 1： 数字不重复
     public List<List<Integer>> subsets(int[] arr) {
         // 不重复不需要sort arr
         List<List<Integer>> res = new ArrayList<>();
@@ -29,7 +26,7 @@ public class DFSRelated {
         }
     }
 
-    // subset 2： 数字会重复
+    // Subset 2： 数字会重复
     public List<List<Integer>> subsets2(int[] arr){
         List<List<Integer>> res = new ArrayList<>();
         //sort作用：方便去重
@@ -55,10 +52,9 @@ public class DFSRelated {
         }
     }
 
-
-
+    // ------------------------------------------------------------------
     // 求全排列：permutation
-    // 数字不重复
+    // Permutation 1: 数字不重复
     public List<List<Integer>> permutation(int[] arr){
         List<List<Integer>> res = new ArrayList<>();
         boolean[] visited = new boolean[arr.length];
@@ -83,8 +79,8 @@ public class DFSRelated {
         }
     }
 
+    // Permutation 2: 数字可能重复
     // 求全排列：permutation with repetition
-    // 数字可能重复
     public List<List<Integer>> permutation2(int[] arr){
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(arr);
@@ -114,7 +110,7 @@ public class DFSRelated {
     }
 
     public static void main(String[] args) {
-        DFSRelated test = new DFSRelated();
+        PermutationCombination test = new PermutationCombination();
         // Test combination with repetition
 //        int[] arr = {1, 2, 2};
 //        List<List<Integer>> res = test.subsets2(arr);

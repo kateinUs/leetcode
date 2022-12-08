@@ -426,6 +426,9 @@ int bfs(Node startNode){
 
 ```
 public ReturnType dfs(参数列表){
+    if(当前状态已经visit过) return ;
+    visited[i][j]修改成true
+
     if(递归出口){
         记录答案
         return;
@@ -582,13 +585,13 @@ class UnionFind {
 ```
 class TrieNode{
     //儿子节点
-    public Map<Character, TrieNode> children;
+    public Map<Character, TrieNode> sons;
     // 根节点到该节点是否是一个单词
     public boolean isWord;
     //根节点到该节点的单词是什么
     public String word;
 
-    public TrieWord(){
+    public TrieNode(){
         sons = new HashMap<Character, TrieNode>();
         isWord = false;
         word = null;
@@ -607,8 +610,48 @@ public class Trie{
 
     // 插入单词
     public void insert(String word){
-        TrieNode = root;
+        TrieNode node = root;
+        
+        for(int i=0; i<word.length(); i++){
+            char letter = word.charAt(i);
+            if(!node.sons.containsKey(letter)){
+                node.sons.put(letter, new TrieNode());
+            }
+            node = node.sons.get(letter);
+        }
 
+        node.isWord = true;
+        node.word = word;
+    }
+
+    // 判断单词word是否存在于字典树中
+    public boolean hasWord(String word){
+        int len = word.length();
+        TrieNode node = root;
+
+        for(int i=0; i<len; i++){
+            char letter = word.charAt(i);
+            if(!node.sons.containsKey(letter)){
+                return false;
+            }
+            node = node.sons.get(letter);
+        }
+        return node.isWord;
+    }
+    
+    // 判断前缀prefix是否存在于字典树中
+    public boolean hasPrefix(String prefix){
+        int len = prefix.length();
+        TrieNode node = root;
+        for(int i=0; i<len; i++){
+            char letter = prefix.charAt(i);
+            if(!node.sons.containsKey(letter)){
+                return false;
+            }
+            node = node.sons.get(letter);
+        }
+
+        return true;
     }
 }
 ```

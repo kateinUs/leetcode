@@ -12,6 +12,7 @@ public class BinarySerach {
 //        System.out.println(binarySearch(arr, 2));
 //        System.out.println(findFirst(arr, 2));
 //        System.out.println(findLast(arr, 2));
+        System.out.println(searchInsert(arr, 3));
         int[] arr2 = {1, 3,3, 4,4,4,4, 5};
 //        List<Integer> list = Arrays.asList(1, 2, 3);
 //        list.forEach(System.out::println);

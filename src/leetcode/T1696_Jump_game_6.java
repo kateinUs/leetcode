@@ -13,6 +13,7 @@ public class T1696_Jump_game_6 {
         int[] score = new int[n];
         score[0] = nums[0];
         Deque<Integer> dq = new LinkedList<>();// 是一个递减队列，从头到尾递减
+
         dq.offerLast(0);
         for (int i = 1; i < n; i++) {
             // pop the old index

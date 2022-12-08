@@ -34,8 +34,6 @@ class RLEIterator {
                 return cur[1];
             }
         }
-        Character.isDigit('0');
-        Character.isLetter('o');
 
         return -1;
     }
