@@ -63,6 +63,10 @@ public class T39_Combination_Sum {
         }
         if(left < 0) return;
         for(int i=start; i<candidates.length; i++){
+            // 如果arr里数据有重复，需要先排序，再加这个判断
+            if(i > start && candidates[i] == candidates[i-1]){
+                continue;
+            }
             curr.add(candidates[i]);
             recursion(curr, i, left - candidates[i]);
             curr.remove(curr.size()-1);

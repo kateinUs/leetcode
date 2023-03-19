@@ -10,13 +10,13 @@ import java.util.List;
  * @create 2022-08-01 16:55
  */
 public class T113_Path_sum_2 {
-    List<List<Integer>> res;
+
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        res = new ArrayList<>();
-        helper(root, new LinkedList<Integer>(), targetSum);
+        List<List<Integer>> res = new ArrayList<>();
+        helper(root, new LinkedList<Integer>(), targetSum, res);
         return res;
     }
-    void helper(TreeNode node, LinkedList<Integer> path, int sum){
+    void helper(TreeNode node, LinkedList<Integer> path, int sum, List<List<Integer>> res){
         if(node == null) return;
         sum -= node.val;
         path.add(node.val);
@@ -27,15 +27,9 @@ public class T113_Path_sum_2 {
             return;
         }
 
-        helper(node.left, path, sum);
-        helper(node.right, path, sum);
+        helper(node.left, path, sum, res);
+        helper(node.right, path, sum, res);
         path.removeLast();
-        String s = new String(String.valueOf(12));
-        new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return 0;
-            }
-        };
+
     }
 }

@@ -1,8 +1,6 @@
 package basic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author huimin
@@ -125,7 +123,6 @@ public class PermutationCombination {
         for(List<Integer> list: permutation){
             System.out.println(list);
         }
-
 
     }
 

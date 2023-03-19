@@ -90,11 +90,17 @@ public class T210_course_schedule_II {
 
     public static void main(String[] args) {
         int n = 5;
-        int[][] prerequisites= new int[][]{{1,0}, {2,1}, {3,1}, {3, 4}};
-        T210_course_schedule_II solu = new T210_course_schedule_II();
-        int[] res = solu.findOrder(n, prerequisites);
-        for(int i: res){
-            System.out.print(i + " ");
-        }
+//        int[][] prerequisites= new int[][]{{1,0}, {2,1}, {3,1}, {3, 4}};
+//        T210_course_schedule_II solu = new T210_course_schedule_II();
+//        int[] res = solu.findOrder(n, prerequisites);
+//        for(int i: res){
+//            System.out.print(i + " ");
+//        }
+
+        List<Character> list = new ArrayList<>();
+        list.add('a');
+        list.add('a');
+        String s = String.valueOf(list.toArray(new Character[0]));
+        System.out.println(s);
     }
 }

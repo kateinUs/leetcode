@@ -11,6 +11,7 @@ import java.util.HashMap;
  * @create 2022-01-16 20:35
  */
 public class T560_subarray_sum_equals_K {
+    // 前序和+hashmap
     public int subarraySum(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, 1);
@@ -24,5 +25,11 @@ public class T560_subarray_sum_equals_K {
             map.put(sum, map.getOrDefault(sum, 0) + 1);
         }
         return count;
+    }
+
+    // sliding windows 不能用，因为这题的数字可以是负数
+    // 那么导致前缀和不是递增的，双指针的使用前提是数组递增
+    public int subarraySum2(int[] nums, int k){
+        return 0;
     }
 }

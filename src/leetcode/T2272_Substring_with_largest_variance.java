@@ -50,4 +50,45 @@ public class T2272_Substring_with_largest_variance {
         }
         return res;
     }
+
+    public int largestVariance2(String s) {
+        int[] freq = new int[26];
+        for(char c: s.toCharArray()){
+            freq[c-'a'] ++;
+        }
+        // 找出两个不同字母a 和b, 两两进行检查
+        // 想象成字母a 是 -1，b是 1，，其他字母为0
+        // 那么 aaabbcacb，就变成[-1, -1, -1, 1, 1, 0, -1, 0, 1]
+        // 只要用kadane算法求max subarray即可
+        int maxVariance=0;
+        for(int a=0; a<26; a++){
+            for(int b=0; b<26; b++){
+                int remainingA = freq[a];
+                int remainingB = freq[b];
+                if(a == b || remainingA == 0 || remainingB == 0){
+                    continue;
+                }
+                int currBFreq = 0, currAFreq = 0;
+                for(int i=0; i<s.length(); i++){
+                    int cur = (int)(s.charAt(i)-'a');
+                    if(cur == a){
+                        currAFreq++;
+                        remainingA--;
+                    }else if(cur == b){
+                        currBFreq++;
+                    }
+
+                    if(currAFreq > 0)
+                        maxVariance = Math.max(maxVariance, currBFreq - currAFreq);
+                    // 当前累积和已经变成负数，所以重新计算以获得最大值
+                    if(currBFreq < currAFreq &&  remainingA >= 1){
+                        currBFreq = 0;
+                        currAFreq = 0;
+                    }
+                }
+            }
+        }
+
+        return maxVariance;
+    }
 }

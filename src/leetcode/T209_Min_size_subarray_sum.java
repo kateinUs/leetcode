@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 /**
  *
  * --- 同向双指针的题 ---
@@ -29,5 +31,20 @@ public class T209_Min_size_subarray_sum {
         }
 
         return (min ==Integer.MAX_VALUE)? 0: min;
+    }
+
+    public int minSubArrayLen2(int target, int[] nums) {
+        int minimumLength=Integer.MAX_VALUE;
+        int sum = 0;
+        int left = 0;
+        for(int right = 0; right < nums.length; right ++){
+            sum += nums[right];
+            while(left <= right && sum >= target){
+                minimumLength = Math.min(minimumLength, right-left+1);
+                sum -= nums[left];
+                left ++;
+            }
+        }
+        return (minimumLength == Integer.MAX_VALUE)? 0: minimumLength;
     }
 }

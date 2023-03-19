@@ -395,7 +395,41 @@ int bfs(Node startNode){
 
 * BFS 拓扑排序模板
 ```
+List<Node> topoSort(List<Node> nodes){
+    // 统计所有入度信息放到hashmap里
+    Map<Node, Integer> indegrees = getIndegrees(nodes);
 
+    // 将所有入度为0的点放入队列中
+    Queue<Node> q = new ArrayDeque<>();
+    
+    for(Node node: nodes){
+        if(indegrees.get(node) == 0){
+            q.offer(node);       
+        }
+    }
+    List<Node> topoOrder = new ArrayList<>();
+
+    while(!q.isEmpty()){
+        Node cur = q.poll();
+        topoOrder.add(node);
+        for(Node nei: cur.getNeighbors()){
+            // 入度减一
+            indegrees.put(nei, indegrees.get(nei)-1);    
+    
+            // 入度减到0说明不再依赖任何点，可以被放到队列(拓扑序)里
+            if(indegrees.get(nei) == 0){
+                q.offer(nei);
+            }
+        }
+    }
+    
+    // 如果queue是空的时候，图中还有点没有被挖出来，说明存在环
+    // 有环就没有拓扑序
+    if(topoOrder.size() != nodes.size()){
+        return null; 
+    }
+    return topoOrder;
+}
 
 ```
 
@@ -654,5 +688,62 @@ public class Trie{
         return true;
     }
 }
+```
+
+## 字典树
+### 使用条件
+* 
+  
+### 复杂度
+* 时间复杂度 get O(1), set O(1)
+* 空间复杂度 O(n)
+  
+### 代码模板
+
+```java
+public class LRUCache {
+    // 单链表节点
+    class ListNode {
+        public int key, val;
+        public ListNode next;
+        public ListNode(int key, int val){
+            this.key = key;
+            this.val = val;
+            this.next = null;
+        }
+
+    }
+    
+    private int capacity;
+    private int size;
+    private ListNode dummy;
+    private ListNode tail;
+    private Map<Integer, ListNode> keyToPrev;
+    
+    public LRUCache(int capacity){
+        this.capacity = capacity;
+        this.keyToPrev = new HashMap<Integer, ListNode>();
+        this.dummy = new ListNode(0, 0);
+        this.tail = this.dummy;
+    }
+    
+    private void moveToTail(int key){
+        ListNode prev = keyToPrev.get(key);
+        ListNode curt = prev.next;
+    
+        if(tail == curt){
+            return ;
+        }
+
+    }
+
+
+
+
+}
+
+
+
+
 ```
 
