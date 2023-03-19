@@ -690,7 +690,7 @@ public class Trie{
 }
 ```
 
-## 字典树
+## LRU Cache
 ### 使用条件
 * 
   
