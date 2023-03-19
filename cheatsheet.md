@@ -28,7 +28,8 @@
 * 空间复杂度: O(1)
 
 ### 模板
-```
+* 推荐使用
+```java
 int binarySearch(int[] nums, int target){
     // 处理corner case
     if(nums == null || nums.length == 0)
@@ -55,6 +56,54 @@ int binarySearch(int[] nums, int target){
 
 ```
 
+* 找插入位置，最左，最右
+```java
+public static int searchInsert(int[] nums, int target) {
+    if(nums.length == 0) return 0;
+    int left = 0, right = nums.length-1;
+    while(left <= right){
+        int mid = left +(right - left)/2;
+        if(nums[mid] < target){
+            left = mid+1;
+        }else if(nums[mid] > target){
+            right= mid-1;
+        }else{
+            return mid;
+        }
+    }
+    // 为什么返回left？？？
+    return left;
+}
+
+public static int findFirst(int[] nums, int target){
+    int left = 0, right = nums.length-1;
+    while (left <= right){
+        int mid = left + (right - left)/2;
+        if(nums[mid] < target){
+            left = mid+1;
+        }else{
+            right = mid-1;
+        }
+    }
+    return left;
+}
+
+public static int findLast(int[] nums, int target){
+    int left = 0, right = nums.length-1;
+    while (left <= right){
+        int mid = left + (right - left)/2;
+        if(nums[mid] > target){
+            right = mid-1;
+        }else{
+            left = mid+1;
+        }
+    }
+    return right;
+}
+
+
+```
+
 <h2 id="2">2. 双指针 Two Pointers</h2>
 
 [Index](#index)
@@ -74,7 +123,7 @@ int binarySearch(int[] nums, int target){
 
 ### 代码模板
 * 相向双指针 (partition in quicksort)
-```
+```java
 public void partition(int[] A, int start, int end){
     if(start >= end){
         return;
@@ -103,7 +152,7 @@ public void partition(int[] A, int start, int end){
 
 * 同向双指针
   - Moving zeros
-```
+```java
 int j=0;
 for(int i=0; i < n; i++){
     //不满足则循环到满足搭配为止
@@ -117,7 +166,7 @@ for(int i=0; i < n; i++){
 ```
 
 * 背向双指针
-```
+```java
 // 这里position可以是截断点
 left = position;
 right = position + 1;
@@ -132,7 +181,7 @@ while(left >= 0 && right < len){
 ```
 
 * 合并双指针 merge 2 lists
-```
+```java
 AraryList<Integer> merger(ArrayList<Integer> list1, ArrayList<Integer> list 2){
     // 需要一个新的list，而不是inplace的修改
     ArrayList<Integer> newList = new ArrayList<Integer>();
@@ -177,7 +226,7 @@ AraryList<Integer> merger(ArrayList<Integer> list1, ArrayList<Integer> list 2){
   - 归并排序：O(n)
 ### 代码模板
 * 快速排序
-```
+```java
 // Quick Sort
 public class Solution{
     public void sortIntegers(int[] A){
@@ -215,7 +264,7 @@ public class Solution{
 ```
 
 * 归并排序
-```
+```java
 // Merge Sort
 public class Solution{
     public void sortInteger(int[] A){
@@ -280,7 +329,7 @@ public class Solution{
 * 时间复杂度: O(n)
 * 空间复杂度: O(n) (含递归调用的栈空间的最大耗费)
 ### 代码模板
-```
+```java
 // 返回类型自定义
 public int divideConquer(TreeNode node){
     // 递归出口
@@ -312,7 +361,7 @@ public int divideConquer(TreeNode node){
 * 时间复杂度: O(n)
 * 空间复杂度: O(n) 
 ### 代码模板
-```
+```java
 public List<TreeNode> inorderTraversal(TreeNode root){
     List<TreeNode> inorder = new ArrayList<>();
     if(root == null) return inorder;
@@ -361,7 +410,7 @@ public List<TreeNode> inorderTraversal(TreeNode root){
 ### 代码模板
 
 * BFS的基础模板，用map存距离
-``` 
+```java
 returnType bfs(Node startNode){
     Queue<Node> q = ArrayDeque<>();
 
@@ -396,7 +445,7 @@ returnType bfs(Node startNode){
 ```
 
 * BFS 层序遍历模板
-```
+```java
 int bfs(Node startNode){
     Queue<Node> q = ArrayDeque<>();
 
@@ -427,7 +476,7 @@ int bfs(Node startNode){
 ```
 
 * BFS 拓扑排序模板
-```
+```java
 List<Node> topoSort(List<Node> nodes){
     // 统计所有入度信息放到hashmap里
     Map<Node, Integer> indegrees = getIndegrees(nodes);
@@ -493,7 +542,7 @@ List<Node> topoSort(List<Node> nodes){
 * 空间复杂度
 ### 代码模板
 
-```
+```java
 public ReturnType dfs(参数列表){
     if(当前状态已经visit过) return ;
     visited[i][j]修改成true
@@ -530,7 +579,7 @@ public ReturnType dfs(参数列表){
 Java 带删除特定元素功能的堆
 额外维护一个set，使得heap的delete操作在O(logn)时间内实现
 
-```
+```java
 class ValueIndexPair{
     int val, index;
     public ValueIndexPair(int val, int index){
@@ -595,7 +644,7 @@ class Heap{
 * 空间复杂度 O(n)
   
 ### 代码模板
-```
+```java
 // 用map实现并查集
 class UnionFind {
     HashMap<Integer, Integer> fatherMap;
@@ -657,7 +706,7 @@ class UnionFind {
   
 ### 代码模板
 
-```
+```java
 class TrieNode{
     //儿子节点
     public Map<Character, TrieNode> sons;
