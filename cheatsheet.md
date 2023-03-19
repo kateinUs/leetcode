@@ -1,3 +1,4 @@
+<h2 id="index">目录</h2>
 
 * [1. 二分法 Binary Search](#1)
 * [2. 双指针 Two Pointers](#2)
@@ -13,6 +14,9 @@
 
 
 <h2 id="1">1. 二分法 Binary Search</h2>
+
+[Index](#index)
+
 ### 使用条件
 1. 排序数组
 2. 要求找一个比O(n)更小的时间复杂度的算法
@@ -52,6 +56,8 @@ int binarySearch(int[] nums, int target){
 ```
 
 <h2 id="2">2. 双指针 Two Pointers</h2>
+
+[Index](#index)
 
 ### 使用条件
 1. 滑动窗口 (90%)
@@ -157,6 +163,9 @@ AraryList<Integer> merger(ArrayList<Integer> list1, ArrayList<Integer> list 2){
 
 
 <h2 id="3">3. 排序算法 Sorting</h2>
+
+[Index](#index)
+
 ### 使用条件
 
 ### 复杂度
@@ -259,6 +268,9 @@ public class Solution{
 }
 ```
 <h2 id="4">4. 二叉树分治 Binary Tree Divide & Conquer</h2>
+
+[Index](#index)
+
 ### 使用条件
 * 二叉树相关问题(99%)
 * 可以一分为二分别处理之后再合并结果(100%)
@@ -289,6 +301,9 @@ public int divideConquer(TreeNode node){
 ```
 
 <h2 id="5">5. 二叉树搜索树非递归 BST Iterator</h2>
+
+[Index](#index)
+
 ### 使用条件
 * 用非递归方式(Non-recursion/Iteration)实现二叉树的中序遍历
 * 常用于BST 但不仅仅可以用于BST
@@ -330,6 +345,9 @@ public List<TreeNode> inorderTraversal(TreeNode root){
 ```
 
 <h2 id="6">6. 宽度优先搜索 BFS </h2>
+
+[Index](#index)
+
 ### 使用条件
 * 拓扑排序 (100%)
 * 出现连通块的关键词(100%)
@@ -449,6 +467,9 @@ List<Node> topoSort(List<Node> nodes){
 ```
 
 <h2 id="7">7. 深度优先搜索 DFS </h2>
+
+[Index](#index)
+
 ### 使用条件
 * 找满足某个条件的所有方案 (99%)
 * 二叉树Binary Tree的问题(90%)
@@ -492,6 +513,9 @@ public ReturnType dfs(参数列表){
 }
 ```
 <h2 id="8">8. 堆 Heap </h2>
+
+[Index](#index)
+
 ### 使用条件
 * 找最大值或最小值 (60%)
 * 找第k大（pop k次，复杂度是O(nlogk)）(50%)
@@ -557,7 +581,9 @@ class Heap{
 ```
 
 <h2 id="9">9. 并查集 UnionFind </h2>
-## 
+
+[Index](#index)
+
 ### 使用条件
 * 需要查询图的联通状况的问题
 * 需要支持快速合并两个集合的问题
@@ -618,6 +644,9 @@ class UnionFind {
 ```
 
 <h2 id="10">10. 字典树 Trie </h2>
+
+[Index](#index)
+
 ### 使用条件
 * 需要查询包含某个单词前缀的单词/字符串是否存在
 * 字符矩阵中找单词的问题 (word search)
@@ -703,6 +732,9 @@ public class Trie{
 ```
 
 <h2 id="11">11. LRU Cahe </h2>
+
+[Index](#index)
+
 ### 使用条件
 * 
   
